@@ -161,4 +161,27 @@ class LRAMView (ctx : Context) : View(ctx) {
             curr.draw(canvas, paint)
         }
     }
+
+    data class Renderer(var view : LRAMView) {
+
+        private var lram : LinkedRAM = LinkedRAM(0)
+
+        private var animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(Color.parseColor("#BDBDBD"))
+            lram.draw(canvas, paint)
+            animator.animate {
+                lram.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lram.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
