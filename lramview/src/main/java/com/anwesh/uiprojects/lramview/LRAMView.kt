@@ -17,8 +17,8 @@ fun Canvas.drawLRAMNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     val w : Float = width.toFloat()
     val hGap : Float = h / nodes
-    val sc1 : Float = Math.min(0.5f, scale)
-    val sc2 : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f))
+    val sc1 : Float = Math.min(0.5f, scale) * 2
+    val sc2 : Float = Math.min(0.5f, Math.max(0f, scale - 0.5f)) * 2
     paint.strokeWidth = Math.min(w, h) / 60
     paint.strokeCap = Paint.Cap.ROUND
     paint.color = Color.parseColor("#4CAF50")
@@ -103,7 +103,7 @@ class LRAMView (ctx : Context) : View(ctx) {
         private var prev : LRAMNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
