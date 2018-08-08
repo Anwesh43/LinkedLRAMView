@@ -3,6 +3,7 @@ package com.anwesh.uiprojects.lramview
 /**
  * Created by anweshmishra on 08/08/18.
  */
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
 import android.content.Context
@@ -184,6 +185,14 @@ class LRAMView (ctx : Context) : View(ctx) {
             lram.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : LRAMView {
+            val view : LRAMView = LRAMView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
